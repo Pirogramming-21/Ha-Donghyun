@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚾ 숫자야구 ⚾</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="container">
+        <div class="header">
+            <h1>⚾ 숫자야구 ⚾</h1>
+        </div>
+        <div class="game-board">
+            <div class="input-box">
+                <input type="text" class="input-field" maxlength="1" id="number1">
+                <input type="text" class="input-field" maxlength="1" id="number2">
+                <input type="text" class="input-field" maxlength="1" id="number3">
+            </div>
+            <button class="submit-button" onclick="check_numbers();">확인하기</button>
+        </div>
+        <div class="game-result">
+            <img src="" id="game-result-img">
+        </div>
+        <div class="result-display">
+            <!-- 아래는 예시입니다. -->
+            <div class="check-result">
+                <div class="left">3 5 6</div>
+                :
+                <div class="right">
+                    1 <div class="strike num-result">S</div>
+                    1 <div class="ball num-result">B</div>
+                </div>
+            </div>
+            <div class="check-result">
+                <div class="left">6 0 2</div>
+                :
+                <div class="right">
+                    0 <div class="strike num-result">S</div>
+                    1 <div class="ball num-result">B</div>
+                </div>
+            </div>
+            <div class="check-result">
+                <div class="left">1 3 9</div>
+                :
+                <div class="right">
+                    <div class="out num-result">O</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer" style="display: none;">
+            made by ajroot5685
+        </div>
+    </div>
+</body>
+</html>

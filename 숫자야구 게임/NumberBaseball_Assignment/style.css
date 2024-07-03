@@ -1,0 +1,94 @@
+*{
+    font-family: "Jua",sans-serif;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.header {
+    background-color: lightgreen;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+
+    border-radius: 20px;
+}
+.game-board {
+    text-align: center;
+    padding: 20px;
+}
+.input-field {
+    padding: 10px;
+    width: 200px;
+    margin: 10px 0;
+}
+.submit-button {
+    padding: 10px 20px;
+    background-color: lightblue;
+    color: black;
+    border: none;
+    cursor: pointer;
+
+    font-size: 16px;
+
+    border-radius: 10px;
+}
+.result-display {
+    background-color: #eeeeee;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#container{
+    width: 500px;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.input-box > input{
+    width: 50px;
+    height: 50px;
+
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+
+    border-radius: 10px;
+}
+.out{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+.ball{
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+}
+.strike{
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
+.num-result{
+    display: inline;
+
+    padding: 8px;
+    border-radius: 50%;
+}
+.check-result{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
