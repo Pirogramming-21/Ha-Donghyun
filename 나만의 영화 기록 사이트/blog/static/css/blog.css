@@ -1,0 +1,122 @@
+.page-header {
+    background-color: #dcd7d0;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Ensures that title and button are on opposite sides */
+}
+
+.page-header h1,
+.page-header h1 a,
+.page-header h1 a:visited,
+.page-header h1 a:active {
+    color: #000000;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+.site-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.highlight {
+    color: red;
+    font-weight: 700;
+}
+
+.highlight2 {
+    color: blue;
+    font-weight: 900;
+
+}
+
+.detail {
+    color: #828282;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11pt;
+}
+
+.title-container {
+    margin-right: 20px;
+}
+
+.movie-details-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.title-detail-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center
+}
+
+.add-post {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15pt;
+    font-weight: 550;
+    color: #5a5a5a;
+    cursor: pointer;
+    margin-left: auto;
+    /* Ensures the button is pushed to the far right */
+}
+
+.col-md-8 {
+    background-color: #ececec;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    position: relative;
+}
+
+.content {
+    margin-left: 40px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    /* font-family: 'Lobster', cursive; */
+    font-family: 'Poppins', sans-serif, cursive;
+}
+
+.date {
+    color: #828282;
+}
+
+.save {
+    float: right;
+}
+
+.post-form textarea,
+.post-form input {
+    width: 100%;
+}
+
+.top-menu,
+.top-menu:hover,
+.top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+.post {
+    /* margin-bottom: 70px; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.post h1 a,
+.post h1 a:visited {
+    color: #000000;
+}

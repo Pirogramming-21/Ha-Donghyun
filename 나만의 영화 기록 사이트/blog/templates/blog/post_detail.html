@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="post1">
+    {% if post.published_date %}
+    <div class="date">
+        {{ post.published_date }}
+    </div>
+    {% endif %}
+    <div class="title-detail-container">
+        <h1>{{ post.title }}</h1>
+        {% if user.is_authenticated %}
+        <div class="text-right">
+            <div class="btn-group">
+                <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="movie-details-container">
+        <p class="movie-details">
+            <span class="detail">개봉년도 </span>
+            {{ post.released_date }}년<br>
+        </p>
+        <p class="movie-details">
+            <span class="detail">감독 </span>
+            {{ post.movieauthor }}
+        </p>
+        <p class="movie-details">
+            <span class="detail">주연 </span>
+            {{ post.actor }}
+        </p>
+        <p class="movie-details">
+            <span class="detail">장르 </span>
+            {{ post.genre }}<br>
+        </p>
+        <p class="movie-details">
+            <span class="detail">별점 </span>
+            {{ post.rating }}
+        </p>
+        <p class="movie-details">
+            <span class="detail">러닝타임 </span>
+            {{ post.running_time }}
+        </p>
+    </div>
+    <p>{{ post.text|linebreaksbr }}</p>
+</div>
+{% endblock %}

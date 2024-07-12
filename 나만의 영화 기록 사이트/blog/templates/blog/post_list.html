@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% for post in posts %}
+<div class="post">
+    <!-- <div class="date">
+        {{ post.published_date }}
+    </div> -->
+    <div class="title-container">
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaksbr|truncatechars:100 }}</p>
+    </div>
+    <div class="movie-details-container">
+        <p class="movie-details">
+            <span class="detail">개봉년도 </span>
+            {{ post.released_date }}년
+        </p>
+        <p class="movie-details">
+            <span class="detail">장르 </span>
+            {{ post.genre }}
+        </p>
+        <p class="movie-details">
+            <span class="detail">별점 </span>
+            {{ post.rating }}
+        </p>
+    </div>
+    <!-- <p>{{ post.text|linebreaksbr }}</p> -->
+
+</div>
+{% endfor %}
+{% endblock %}
