@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: white;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:link, a:visited, a:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.nav_id {
+    font-size: 10pt;
+    color: lightgray;
+}
+
+.footer__container {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    padding: 0.5rem 0;
+}
+
+.footer__item {
+    font-size: 1.5rem;
+}
+
+.footer__image{
+    height: 100%;
+}
+
+.footer__image > img {
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    border-radius: 100%;
+}
+
+.main_photo {
+    width: 300px;
+}
+

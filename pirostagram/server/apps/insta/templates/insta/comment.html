@@ -1,0 +1,79 @@
+{% extends 'insta/navbar.html' %}
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="mx-5">
+    <h4 class="mt-5 pt-5 ">댓글</h4>
+    <div id="container"> 
+    {% for comment in comments %}
+    {% if comment.related_post.id == post.id  %}
+        <div class="d-flex justify-content-between align-items-center" id="{{comment.id}}">
+            <div>{{comment.user}} :  {{comment.content}}</div>
+            {% if comment.user.id == user.id  %}
+            <div class="my-1 btn btn-sm bg-secondary text-white" onclick="onClickDelete({{ post.id }}, {{ comment.id }})">삭제</div>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+    <div>
+        <input type="text" id="comment_text" placeholder="댓글을 작성해보세요">
+        <button class="btn bg-secondary text-white" onclick="onClickLike({{ post.id }}, '{{user}}', comment_text.value)">게시</button>
+    </div>
+</div>
+{% endif %}
+<script>
+    const strip = (string) => {
+        return string.replace(/^\s+|\s+$/g, "");
+        };
+    const requestLike = new XMLHttpRequest();
+    const onClickLike = (post_id, user, comment) => {
+        const url = "/insta/comment/" + post_id + "/create";
+        requestLike.open("POST", url, true)
+        requestLike.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+        requestLike.send(JSON.stringify({post_id: post_id, user: user, comment: comment}));
+    };
+
+    requestLike.onreadystatechange = () => {
+        if (requestLike.readyState === XMLHttpRequest.DONE) {
+            if (requestLike.status < 400) {
+                const { post_id, user, comment, comment_id } = JSON.parse(requestLike.response);
+                const target = document.querySelector(`#container`);
+                const newComment = document.createElement('div');
+                newComment.id= comment_id;
+                newComment.className='d-flex justify-content-between align-items-center';
+                newComment.innerHTML = `<div>${user}  :  ${comment}</div>
+                <div class="my-1 btn btn-sm bg-secondary text-white" onclick="onClickDelete(${ post_id }, ${ comment_id })">삭제</div>`;
+                target.appendChild(newComment);
+            }
+        }
+    };
+
+
+    const requestDelete = new XMLHttpRequest();
+    const onClickDelete = (post_id, comment_id) => {
+        const url = "/insta/comment/" + post_id + "/delete";
+        requestDelete.open("POST", url, true)
+        requestDelete.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+        requestDelete.send(JSON.stringify({post_id: post_id, comment_id: comment_id}));
+    };
+
+    requestDelete.onreadystatechange = () => {
+        if (requestDelete.readyState === XMLHttpRequest.DONE) {
+            if (requestDelete.status < 400) {
+                const { post_id, comment_id } = JSON.parse(requestDelete.response);
+                const targetContainer = document.querySelector(`#container`);
+                const target = document.getElementById(`${comment_id}`);
+                targetContainer.removeChild(target);
+            }
+        }
+    };
+</script>
+{% endblock %}

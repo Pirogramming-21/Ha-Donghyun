@@ -1,0 +1,16 @@
+{% extends 'insta/navbar.html' %}
+{% block content %}
+    <div class="py-5 my-4 d-flex justify-content-center align-items-center p-5" id="login-box">
+        <div class="" id="login-con">
+            <form method="POST" action="" class="py-3">
+                {% csrf_token %}
+                {{ form }}
+                <button class="btn bg-secondary text-white mx-3">Login</button>
+            </form>
+            <span>회원가입이 되어있지 않으신가요?</span>
+            <a href="{% url 'insta:signup' %}" class="btn bg-secondary text-white mx-3">회원가입</a>
+        </div>
+    </div>
+{% endblock %}
+
+

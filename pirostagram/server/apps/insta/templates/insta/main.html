@@ -1,0 +1,67 @@
+{% extends 'insta/navbar.html' %}
+{% load static %}
+{% block content %}
+  <div class="py-5 my-4 d-flex flex-column align-items-start">
+    {% if user.is_authenticated %}
+      {% for post in posts %}
+        {% if post.image %}
+          <div style="width: 100vw; height: 100vw;"><img style="width: 100%; height:100%" src="{{ post.image.url }}" alt=""></div>
+        {% endif %}
+        <div class="d-flex flex-row justify-content-start">
+          <div class="d-flex flex-row mx-2 my-1 post-id-{{ post.id }}">
+            {% if post in liked_users %}
+              <div class="post__dislike" onclick="onClickLike({{ post.id }}, 'dislike')"><i class="fa-solid fa-heart fa-2x"></i></div>
+            {% else %}
+              <div class="post__like" onclick="onClickLike({{ post.id }}, 'like')"><i class="fa-regular fa-heart fa-2x"></i></div>
+            {% endif %}
+          </div>
+          <div><a href="{% url "insta:comment" post.pk %}"><i class="mx-2 my-1 fa-regular fa-comment fa-2x"></i></a></div>
+        </div>
+        <div class="d-flex flex-column mx-2">
+          <div>{{post.user}} : {{ post.content }}</div>
+          <hr/>
+          {% for comment in comments %}
+            {% if comment.related_post.id == post.id %}
+              <div>{{comment.user}}  :  {{comment.content}}</div>
+            {% endif %}
+          {% endfor %}
+          
+        </div>
+        <hr/>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <script>
+    const strip = (string) => {
+        return string.replace(/^\s+|\s+$/g, "");
+      };
+    const requestLike = new XMLHttpRequest();
+    const onClickLike = (id, type) => {
+        const url = "/insta/likes/" + id;
+        requestLike.open("POST", url, true)
+        requestLike.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+        requestLike.send(JSON.stringify({id: id, type: type}));
+    };
+
+    requestLike.onreadystatechange = () => {
+        if (requestLike.readyState === XMLHttpRequest.DONE) {
+            if (requestLike.status < 400) {
+                const { id, type } = JSON.parse(requestLike.response);
+                const element = document.querySelector(`.post-id-${id}`);
+                const originHTML = strip(element.innerHTML);
+                console.log(originHTML)
+                if (originHTML.includes('fa-solid')) {
+                  element.innerHTML = `<div class="post__like" onclick="onClickLike(${id}, 'like')"><i class="fa-regular fa-heart fa-2x"></i></div>`;
+                  console.log(element)
+                } else {
+                  element.innerHTML = `<div class="post__dislike" onclick="onClickLike(${id}, 'dislike')"><i class="fa-solid fa-heart fa-2x"></i></div>`;
+                  console.log(element)
+                };
+            }
+        }
+    };
+  </script>
+{% endblock %}

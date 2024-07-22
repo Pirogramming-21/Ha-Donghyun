@@ -1,0 +1,14 @@
+{% extends 'insta/navbar.html' %}
+{% load static %}
+
+{% block content %}
+<div class="py-5 my-4 d-flex flex-column  align-items-center">
+    <form action="{% url 'insta:comment_create' post.id %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        <h4>댓글 작성</h4>
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
+        <br />
+        <input type="submit", value="저장하기", class="btn bg-secondary text-white">
+    </form>
+</div>
+{% endblock %}
